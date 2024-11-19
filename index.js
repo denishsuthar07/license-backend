@@ -10,6 +10,7 @@ const port = 7845;
 
 app.use(express.json());
 app.use(express.text());
+app.use(bodyParser.text())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
