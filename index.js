@@ -65,7 +65,10 @@ app.post('/proxy', async (req, res) => {
       data:response.data
     })
   } catch (error) {
-    res.status(error.response?.status || 500).send(error.message);
+    res.status(500).json({
+      success:false,
+      error
+    });
   }
 });
 
