@@ -2,8 +2,10 @@ import express from "express"
 import axios from "axios"
 import bodyParser from "body-parser";
 import cors from "cors"
+import path, { join } from "path";
 
 const app = express();
+const __dirname = path.resolve();
 const port = 7845;
 
 app.use(express.json());
@@ -16,9 +18,15 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 app.get("/", (req,res)=>{
     res.send("Hie")
+})
+
+app.get("/btn", (req,res)=>{
+  res.render("button")
 })
 
 app.post('/proxy', async (req, res) => {
