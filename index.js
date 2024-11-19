@@ -23,10 +23,32 @@ app.use(
 
 app.get('/', async (req, res) => {
   try {
-    const response = await axios.post('https://www.lars.police.vic.gov.au/LARS/LARS.asp?File=/Components/Screens/PSINFP03/PSINFP03.asp?Process=SEARCH', req.body, {
+    const xmlPayload = `
+          <XML>
+            <HEADER>
+              <PROCESS>SEARCH</PROCESS>
+              <TIMESTAMP>20241119100226</TIMESTAMP>
+              <SECURITYTOKEN>A63F4D6C-601D-407B-92E2-0997B5407E76</SECURITYTOKEN>
+            </HEADER>
+            <PAYLOAD>
+              <GNDTLE01 id='idSearchPane'>
+                <CONTROL name='dropdownlist'>%</CONTROL>
+                <CONTROL name='searchtext'></CONTROL>
+                <CONTROL name='SearchCriteriadropdownlist'>X</CONTROL>
+                <CONTROL name='SearchAuthNb'>Z48-116-20S</CONTROL>
+                <CONTROL name='Index'></CONTROL>
+                <CONTROL name='Page'>1</CONTROL>
+              </GNDTLE01>
+            </PAYLOAD>
+          </XML>
+        `;
+
+    const response = await axios.post('https://www.lars.police.vic.gov.au/LARS/LARS.asp?File=/Components/Screens/PSINFP03/PSINFP03.asp?Process=SEARCH', 
+      xmlPayload, {
       headers: { 'Content-Type': 'text/xml', Accept: 'application/xml' },
     });
     res.send(response.data);
+    console.log(response.data)
   } catch (error) {
     res.status(error.response?.status || 500).send(error.message);
   }
