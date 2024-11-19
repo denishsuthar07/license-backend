@@ -55,7 +55,7 @@ app.post('/proxy', async (req, res) => {
       xmlPayload, {
       headers: { 'Content-Type': 'text/xml', Accept: 'application/xml' },
     });
-    res.send(response.data);
+    // res.send(response.data);
     console.log("Hiiiie");
     
     console.log(response.data)
