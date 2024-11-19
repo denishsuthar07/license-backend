@@ -21,7 +21,7 @@ app.use(
 //     res.send("Hie")
 // })
 
-app.get('/', async (req, res) => {
+app.post('/', async (req, res) => {
   try {
     const xmlPayload = `
           <XML>
@@ -48,6 +48,8 @@ app.get('/', async (req, res) => {
       headers: { 'Content-Type': 'text/xml', Accept: 'application/xml' },
     });
     res.send(response.data);
+    console.log("Hiiiie");
+    
     console.log(response.data)
   } catch (error) {
     res.status(error.response?.status || 500).send(error.message);
