@@ -30,7 +30,6 @@ app.get("/btn", (req,res)=>{
 })
 
 app.post('/proxy', async (req, res) => {
-  try {
     const xmlPayload = `
           <XML>
             <HEADER>
@@ -64,13 +63,6 @@ app.post('/proxy', async (req, res) => {
       success:true,
       data:response.data
     })
-  } catch (error) {
-    console.log("catch stament");
-    res.status(500).json({
-      success:false,
-      error
-    });
-  }
 });
 
 app.listen(port, () => console.log(`Server running at ${port}`));
