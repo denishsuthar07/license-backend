@@ -59,6 +59,11 @@ app.post('/proxy', async (req, res) => {
     console.log("Hiiiie");
     
     console.log(response.data)
+
+    res.status(200).json({
+      success:true,
+      data:response.data
+    })
   } catch (error) {
     res.status(error.response?.status || 500).send(error.message);
   }
