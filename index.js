@@ -1,7 +1,7 @@
-import express from 'express'
-import axios from 'axios';
+import express from "express"
+import axios from "axios"
 import bodyParser from "body-parser";
-import cors from "cors";
+import cors from "cors"
 
 const app = express();
 const port = 7845;
@@ -17,11 +17,11 @@ app.use(
   })
 );
 
-app.get("/", (req,res)=>{
-    res.send("Hie")
-})
+// app.get("/", (req,res)=>{
+//     res.send("Hie")
+// })
 
-app.post('/proxy', async (req, res) => {
+app.get('/', async (req, res) => {
   try {
     const response = await axios.post('https://www.lars.police.vic.gov.au/LARS/LARS.asp?File=/Components/Screens/PSINFP03/PSINFP03.asp?Process=SEARCH', req.body, {
       headers: { 'Content-Type': 'text/xml', Accept: 'application/xml' },
