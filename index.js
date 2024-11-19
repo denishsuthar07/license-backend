@@ -17,6 +17,10 @@ app.use(
   })
 );
 
+app.get("/", (req,res)=>{
+    res.send("Hie")
+})
+
 app.post('/proxy', async (req, res) => {
   try {
     const response = await axios.post('https://www.lars.police.vic.gov.au/LARS/LARS.asp?File=/Components/Screens/PSINFP03/PSINFP03.asp?Process=SEARCH', req.body, {
