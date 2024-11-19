@@ -17,11 +17,11 @@ app.use(
   })
 );
 
-// app.get("/", (req,res)=>{
-//     res.send("Hie")
-// })
+app.get("/", (req,res)=>{
+    res.send("Hie")
+})
 
-app.post('/', async (req, res) => {
+app.post('/proxy', async (req, res) => {
   try {
     const xmlPayload = `
           <XML>
